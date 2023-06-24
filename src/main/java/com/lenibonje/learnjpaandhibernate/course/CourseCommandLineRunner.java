@@ -1,15 +1,20 @@
-package com.lenibonje.learnjpaandhibernate.jdbc;
+package com.lenibonje.learnjpaandhibernate.course;
 
 import com.lenibonje.learnjpaandhibernate.course.Course;
+import com.lenibonje.learnjpaandhibernate.jdbc.CourseJdbcRepository;
+import com.lenibonje.learnjpaandhibernate.jpa.CourseJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CourseJdbcCommandLineRunner implements CommandLineRunner {
+public class CourseCommandLineRunner implements CommandLineRunner {
+
+//    @Autowired
+//    private CourseJdbcRepository repository;
 
     @Autowired
-    private CourseJdbcRepository repository;
+    private CourseJpaRepository repository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -17,7 +22,7 @@ public class CourseJdbcCommandLineRunner implements CommandLineRunner {
         repository.insert(new Course(2, "Learn Devops", "Lenibonje"));
         repository.insert(new Course(3, "Learn Azure", "Lenibonje"));
         repository.insert(new Course(4, "Learn iOS", "Lenibonje"));
-        repository.delete(4);
+        repository.deleteById(4);
 
         System.out.println(repository.findById(2));
         System.out.println(repository.findById(3));
